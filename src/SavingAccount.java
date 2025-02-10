@@ -25,9 +25,9 @@ class SavingAccount extends BankAccount {
 
     @Override
     public void displayAccountInfo() {
-//        System.out.println(Main.YELLOW + "\n>> Savings Account <<" + Main.RESET);
+        System.out.println(DisplayUI.YELLOW + "\n>> Savings Account <<" + DisplayUI.RESET);
         printCommonInfo();
         System.out.printf("Interest Rate: %.0f%%\n", RATE * 100);
-//        System.out.println(Main.YELLOW + "======================================" + Main.RESET);
+        System.out.println(DisplayUI.YELLOW + "======================================" + DisplayUI.RESET);
     }
 }

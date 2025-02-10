@@ -23,7 +23,7 @@ class CheckingAccount extends BankAccount {
 
     @Override
     public void displayAccountInfo() {
-        System.out.println(DisplayUI.CYAN + "\n================= Online Banking System =================" + DisplayUI.RESET);
+        System.out.println(DisplayUI.CYAN + "================= Online Banking System =================" + DisplayUI.RESET);
         printCommonInfo();
         System.out.println(DisplayUI.CYAN + "======================================================" + DisplayUI.RESET);
     }
