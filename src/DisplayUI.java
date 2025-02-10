@@ -102,7 +102,7 @@ public  class DisplayUI {
     private static void depositMoney() {
         System.out.println(">".repeat(20) + "   Deposit Money  "+"<".repeat(20));
         String accountType = getValidInput(
-                "1. Checking Account\n2. Savings Account\n3. Back\n => Choose an option ? ",
+                "1. Checking Account\n2. Savings Account\n3. Back\n => Choose an account type that you want to deposit ? ",
                 "^[1-3]$",
                 RED + "Invalid choice ? Please try again " + RESET
         );
@@ -120,14 +120,15 @@ public  class DisplayUI {
                 RED + "Invalid amount. Use up to two decimal places." + RESET
         );
         account.deposit(Double.parseDouble(amountStr));
-        System.out.println("                            Checking Account                       ");
-        System.out.println("Received   :" +   "       " + account.getAccountNumber());
+        System.out.println("                 Checking Account ");
+        System.out.println("Received $:"+ amountStr);
+        System.out.println("Total Amount  $:" +account.getBalance() );
         System.out.println(GREEN + "Deposit successful!" + RESET);
     }
 
     private static void withdrawMoney() {
         String accountType = getValidInput(
-                "1. Checking Account\n2. Savings Account\n3. Back\nChoose: ",
+                "1. Checking Account\n2. Savings Account\n3. Back\n Choose an account type that you want to draw ?: ",
                 "^[1-3]$",
                 RED + "Invalid choice." + RESET
         );
@@ -135,7 +136,7 @@ public  class DisplayUI {
 
         Account account = accountType.equals("1") ? checkingAccount : savingsAccount;
         if (account == null) {
-            System.out.println(RED + "Account not found." + RESET);
+            System.out.println(RED + "Account number not been found ? " + RESET);
             return;
         }
 
@@ -147,6 +148,8 @@ public  class DisplayUI {
         double amount = Double.parseDouble(amountStr);
 
         if (account.withdraw(amount)) {
+            System.out.println("Withdraw $: "+ amountStr);
+            System.out.println("Total Amount  $:" + amount );
             System.out.println(GREEN + "Withdrawal successful!" + RESET);
         } else {
             System.out.println(RED + "Withdrawal failed. Insufficient balance." + RESET);
@@ -155,7 +158,7 @@ public  class DisplayUI {
 
     private static void transferMoney() {
         String sourceType = getValidInput(
-                "Select source account:\n1. Checking\n2. Savings\n3. Back\nChoose: ",
+                "Select source account:\n1. Checking\n2. Savings\n3. Back\nPlease enter type an account that you want to transfer ?: ",
                 "^[1-3]$",
                 RED + "Invalid choice." + RESET
         );
@@ -167,7 +170,7 @@ public  class DisplayUI {
         }
 
         String targetType = getValidInput(
-                "Select target account:\n1. Checking\n2. Savings\n3. Back\nChoose: ",
+                "Select target account:\n1. Checking\n2. Savings\n3. Back\n Please choose an account type to transfer ?",
                 "^[1-3]$",
                 RED + "Invalid choice." + RESET
         );
@@ -186,14 +189,14 @@ public  class DisplayUI {
         double amount = Double.parseDouble(amountStr);
 
         source.transfer(amount, target);
-        System.out.println(GREEN + "Transfer completed." + RESET);
+        System.out.println(GREEN + "Transfer completed  "+ amount + " to " +target.getBalance() + RESET);
     }
 
     private static void displayAccountInfo() {
         String accountType = getValidInput(
-                "1. Checking Account\n2. Savings Account\n3. Back\nChoose: ",
+                "1. Checking Account\n2. Savings Account\n3. Back\n Please choose type of account that you want to display ?: ",
                 "^[1-3]$",
-                RED + "Invalid choice." + RESET
+                RED + "Invalid choice? Please try again" + RESET
         );
         if (accountType.equals("3")) return;
 
@@ -207,9 +210,9 @@ public  class DisplayUI {
 
     private static void deleteAccount() {
         String accountType = getValidInput(
-                "1. Checking Account\n2. Savings Account\n3. Back\nChoose : ",
+                "1. Checking Account\n2. Savings Account\n3. Back\nChoose an account type that you want to deleted ? : ",
                 "^[1-3]$",
-                RED + "Invalid choice." + RESET
+                RED + "Invalid choice? Please try gain" + RESET
         );
         if (accountType.equals("3")) return;
 
